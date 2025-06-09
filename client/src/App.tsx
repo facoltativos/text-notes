@@ -81,7 +81,7 @@ function App() {
     setIsLoading(true);
     try {
       const newNoteData: CreateNoteInput = {
-        title: 'New Note',
+        title: 'Nuovo Appunto',
         content: ''
       };
       const newNote = await trpc.createNote.mutate(newNoteData);
@@ -147,21 +147,21 @@ function App() {
           {/* Sidebar - Notes List */}
           <div className="lg:col-span-1 space-y-4">
             <div className="flex items-center justify-between">
-              <h1 className="text-2xl font-bold text-gray-900">📝 Notes</h1>
+              <h1 className="text-2xl font-bold text-gray-900">📝 Appunti</h1>
               <Button 
                 onClick={handleCreateNote}
                 disabled={isLoading}
                 size="sm"
                 className="bg-blue-600 hover:bg-blue-700"
               >
-                {isLoading ? '...' : '+ New'}
+                {isLoading ? '...' : '+ Nuovo'}
               </Button>
             </div>
 
             {/* Search and Sort */}
             <div className="space-y-2">
               <Input
-                placeholder="🔍 Search notes..."
+                placeholder="🔍 Cerca appunti..."
                 value={searchQuery}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
                   setSearchQuery(e.target.value)
@@ -173,12 +173,12 @@ function App() {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="updated_desc">Recently Updated</SelectItem>
-                  <SelectItem value="updated_asc">Oldest Updated</SelectItem>
-                  <SelectItem value="created_desc">Recently Created</SelectItem>
-                  <SelectItem value="created_asc">Oldest Created</SelectItem>
-                  <SelectItem value="title_asc">Title A-Z</SelectItem>
-                  <SelectItem value="title_desc">Title Z-A</SelectItem>
+                  <SelectItem value="updated_desc">Aggiornati di Recente</SelectItem>
+                  <SelectItem value="updated_asc">Aggiornati Meno Recentemente</SelectItem>
+                  <SelectItem value="created_desc">Creati di Recente</SelectItem>
+                  <SelectItem value="created_asc">Creati Meno Recentemente</SelectItem>
+                  <SelectItem value="title_asc">Titolo A-Z</SelectItem>
+                  <SelectItem value="title_desc">Titolo Z-A</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -187,7 +187,7 @@ function App() {
             <div className="space-y-2 overflow-auto max-h-[calc(100vh-200px)]">
               {filteredNotes.length === 0 ? (
                 <div className="text-center py-8 text-gray-500">
-                  {searchQuery ? 'No notes found' : 'No notes yet. Create your first note!'}
+                  {searchQuery ? 'Nessun appunto trovato' : 'Nessun appunto ancora. Crea il tuo primo appunto!'}
                 </div>
               ) : (
                 filteredNotes.map((note: Note) => (
@@ -218,18 +218,18 @@ function App() {
                           </AlertDialogTrigger>
                           <AlertDialogContent>
                             <AlertDialogHeader>
-                              <AlertDialogTitle>Delete Note</AlertDialogTitle>
+                              <AlertDialogTitle>Elimina Appunto</AlertDialogTitle>
                               <AlertDialogDescription>
-                                Are you sure you want to delete "{note.title}"? This action cannot be undone.
+                                Sei sicuro di voler eliminare "{note.title}"? Questa azione non può essere annullata.
                               </AlertDialogDescription>
                             </AlertDialogHeader>
                             <AlertDialogFooter>
-                              <AlertDialogCancel>Cancel</AlertDialogCancel>
+                              <AlertDialogCancel>Annulla</AlertDialogCancel>
                               <AlertDialogAction 
                                 onClick={() => handleDeleteNote(note.id)}
                                 className="bg-red-600 hover:bg-red-700"
                               >
-                                Delete
+                                Elimina
                               </AlertDialogAction>
                             </AlertDialogFooter>
                           </AlertDialogContent>
@@ -238,7 +238,7 @@ function App() {
                     </CardHeader>
                     <CardContent className="pt-0">
                       <p className="text-xs text-gray-600 line-clamp-2">
-                        {note.content || 'No content'}
+                        {note.content || 'Nessun contenuto'}
                       </p>
                       <p className="text-xs text-gray-400 mt-2">
                         {note.updated_at.toLocaleDateString()}
@@ -262,18 +262,18 @@ function App() {
                         handleTitleChange(e.target.value)
                       }
                       className="text-xl font-bold border-none shadow-none p-0 focus-visible:ring-0"
-                      placeholder="Note title..."
+                      placeholder="Titolo dell'appunto..."
                     />
                     <div className="flex items-center space-x-2 text-sm text-gray-500">
                       {hasUnsavedChanges && (
-                        <span className="text-yellow-600">● Unsaved</span>
+                        <span className="text-yellow-600">● Non Salvato</span>
                       )}
-                      <span>Auto-save enabled</span>
+                      <span>Salvataggio automatico abilitato</span>
                     </div>
                   </div>
                   <div className="text-xs text-gray-400">
-                    Created: {selectedNote.created_at.toLocaleDateString()} • 
-                    Updated: {selectedNote.updated_at.toLocaleDateString()}
+                    Creato il: {selectedNote.created_at.toLocaleDateString()} • 
+                    Aggiornato il: {selectedNote.updated_at.toLocaleDateString()}
                   </div>
                 </CardHeader>
                 <CardContent className="h-[calc(100%-140px)]">
@@ -282,7 +282,7 @@ function App() {
                     onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => 
                       handleContentChange(e.target.value)
                     }
-                    placeholder="Start writing your note..."
+                    placeholder="Inizia a scrivere il tuo appunto..."
                     className="w-full h-full resize-none border-none shadow-none focus-visible:ring-0 text-gray-700"
                   />
                 </CardContent>
@@ -291,8 +291,8 @@ function App() {
               <Card className="h-full bg-white flex items-center justify-center">
                 <div className="text-center text-gray-500">
                   <div className="text-6xl mb-4">📝</div>
-                  <h2 className="text-xl font-medium mb-2">Select a note to start editing</h2>
-                  <p className="text-gray-400">Choose a note from the sidebar or create a new one</p>
+                  <h2 className="text-xl font-medium mb-2">Seleziona un appunto per iniziare a modificare</h2>
+                  <p className="text-gray-400">Scegli un appunto dalla barra laterale o creane uno nuovo</p>
                 </div>
               </Card>
             )}
