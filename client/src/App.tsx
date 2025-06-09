@@ -166,7 +166,7 @@ function App() {
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
                   setSearchQuery(e.target.value)
                 }
-                className="border-gray-300"
+                className="border-gray-300 text-base"
               />
               <Select value={sortBy} onValueChange={(value: SortOrder) => setSortBy(value)}>
                 <SelectTrigger className="border-gray-300">
@@ -186,7 +186,7 @@ function App() {
             {/* Notes List */}
             <div className="space-y-2 overflow-auto max-h-[calc(100vh-200px)]">
               {filteredNotes.length === 0 ? (
-                <div className="text-center py-8 text-gray-500">
+                <div className="text-center py-8 text-gray-500 text-lg">
                   {searchQuery ? 'Nessun appunto trovato' : 'Nessun appunto ancora. Crea il tuo primo appunto!'}
                 </div>
               ) : (
@@ -202,7 +202,7 @@ function App() {
                   >
                     <CardHeader className="pb-2">
                       <div className="flex items-start justify-between">
-                        <CardTitle className="text-sm font-medium text-gray-900 truncate pr-2">
+                        <CardTitle className="text-lg font-medium text-gray-900 truncate pr-2 lg:text-xl">
                           {note.title}
                         </CardTitle>
                         <AlertDialog>
@@ -237,10 +237,10 @@ function App() {
                       </div>
                     </CardHeader>
                     <CardContent className="pt-0">
-                      <p className="text-xs text-gray-600 line-clamp-2">
+                      <p className="text-sm text-gray-600 line-clamp-2 lg:text-base">
                         {note.content || 'Nessun contenuto'}
                       </p>
-                      <p className="text-xs text-gray-400 mt-2">
+                      <p className="text-sm text-gray-400 mt-2 lg:text-sm">
                         {note.updated_at.toLocaleDateString()}
                       </p>
                     </CardContent>
@@ -266,12 +266,12 @@ function App() {
                     />
                     <div className="flex items-center space-x-2 text-sm text-gray-500">
                       {hasUnsavedChanges && (
-                        <span className="text-yellow-600">● Non Salvato</span>
+                        <span className="text-yellow-600 text-base">● Non Salvato</span>
                       )}
                       <span>Salvataggio automatico abilitato</span>
                     </div>
                   </div>
-                  <div className="text-xs text-gray-400">
+                  <div className="text-sm text-gray-400">
                     Creato il: {selectedNote.created_at.toLocaleDateString()} • 
                     Aggiornato il: {selectedNote.updated_at.toLocaleDateString()}
                   </div>
@@ -292,7 +292,7 @@ function App() {
                 <div className="text-center text-gray-500">
                   <div className="text-6xl mb-4">📝</div>
                   <h2 className="text-xl font-medium mb-2">Seleziona un appunto per iniziare a modificare</h2>
-                  <p className="text-gray-400">Scegli un appunto dalla barra laterale o creane uno nuovo</p>
+                  <p className="text-gray-400 text-lg">Scegli un appunto dalla barra laterale o creane uno nuovo</p>
                 </div>
               </Card>
             )}
